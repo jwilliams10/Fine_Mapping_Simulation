@@ -48,15 +48,15 @@ library(ggplot2)
 library(gridExtra)
 library(cowplot)
 
-load("FineMapping_Application/Data/Sim1_Result.RData")
+load("Fine_Mapping_Simulation/Data/Sim1_Result.RData")
 
-Sim1_Bim <- read.delim("FineMapping_Application/Data/Sim1.bim", header=FALSE)
+Sim1_Bim <- read.delim("Fine_Mapping_Simulation/Data/Sim1.bim", header=FALSE)
 
 causal_SNPs_Sim1 <- which(Sim1_Bim[,4] == 56432339)
 
-load("FineMapping_Application/Data/Sim2_Result.RData")
+load("Fine_Mapping_Simulation/Data/Sim2_Result.RData")
 
-Sim2_Bim <- read.delim("FineMapping_Application/Data/Sim2.bim", header=FALSE)
+Sim2_Bim <- read.delim("Fine_Mapping_Simulation/Data/Sim2.bim", header=FALSE)
 
 causal_SNPs_Sim2 <- which(Sim2_Bim[,4] %in% c(167372978,167370971,167442994,167442994,167404689,167412048,167411788))
 
@@ -122,7 +122,7 @@ average_pips_Sim2 <- cbind(Sim2_Bim,rowMeans(do.call(cbind,lapply(results_susie_
 
 ### Simulation 1
 
-FunctionalScores_Sim1 <- read_excel("FineMapping_Application/Data/FunctionalScores.xlsx",sheet = "lung cancer 1 var")
+FunctionalScores_Sim1 <- read_excel("Fine_Mapping_Simulation/Data/FunctionalScores.xlsx",sheet = "lung cancer 1 var")
 FunctionalScores_Sim1$Chr <- unlist(lapply(strsplit(FunctionalScores_Sim1$Variant_ID,":"),function(x){as.numeric(x[1])}))
 FunctionalScores_Sim1$Position <- unlist(lapply(strsplit(FunctionalScores_Sim1$Variant_ID,":"),function(x){as.numeric(x[2])}))
 
@@ -170,7 +170,7 @@ aggregate(TPs + FPs ~ Method,data = table_dat1,mean)
 
 ### Simulation 2
 
-FunctionalScores_Sim2 <- read_excel("FineMapping_Application/Data/FunctionalScores.xlsx",sheet = "lung cancer 6 vars")
+FunctionalScores_Sim2 <- read_excel("Fine_Mapping_Simulation/Data/FunctionalScores.xlsx",sheet = "lung cancer 6 vars")
 FunctionalScores_Sim2$Chr <- unlist(lapply(strsplit(FunctionalScores_Sim2$Variant_ID,":"),function(x){as.numeric(x[1])}))
 FunctionalScores_Sim2$Position <- unlist(lapply(strsplit(FunctionalScores_Sim2$Variant_ID,":"),function(x){as.numeric(x[2])}))
 

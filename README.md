@@ -1,2 +1,2 @@
 # Fine_Mapping_Simulation
- Fine-mapping simulation for "An evolving understanding of multiple causal variants underlying genetic association signals".
+Using simulated European data from "A new method for multiancestry polygenic prediction improves performance across diverse populations" Zhang et al. Nat. Genet. 2023, SNPs were extracted from chromosome 6 and 15 in Obtain_SimData.R script. 50 simulated responses were then created in Simulate_Data.R for both the chromosome 6 and 15 regions. These simulated responses were analyzed using fine-mapping methods in the Simulation_Study.R script. Lastly, the results from these methods were extracted and plotted using the Simulation_Results.R script.

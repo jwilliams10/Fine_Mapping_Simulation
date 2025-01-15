@@ -8,14 +8,14 @@ library(dplyr)
 fam_file <- read.table("/data/DCEG_shared/data/simulated/simulated_multi_ances_genotype_600K/EUR/all_chr.tag.fam", quote="\"", comment.char="")
 
 
-if(!file.exists("FineMapping_Application/Data/Sim1.rds")){
-  rds <- bigsnpr::snp_readBed("FineMapping_Application/Data/Sim1.bed")  
+if(!file.exists("Fine_Mapping_Simulation/Data/Sim1.rds")){
+  rds <- bigsnpr::snp_readBed("Fine_Mapping_Simulation/Data/Sim1.bed")  
 }
 
 # Loading the data from backing files
-common_variants_Sim1 <- snp_attach("FineMapping_Application/Data/Sim1.rds")
+common_variants_Sim1 <- snp_attach("Fine_Mapping_Simulation/Data/Sim1.rds")
 
-Sim1_Bim <- read.delim("FineMapping_Application/Data/Sim1.bim", header=FALSE)
+Sim1_Bim <- read.delim("Fine_Mapping_Simulation/Data/Sim1.bim", header=FALSE)
 
 causal_SNPs_Sim1 <- which(Sim1_Bim[,4] == 56432339)
 
@@ -25,14 +25,14 @@ g_snps_Sim1 <- common_variants_Sim1$genotypes[,causal_SNPs_Sim1,drop = FALSE]
 scaled_causal_snps_Sim1 <- scale(g_snps_Sim1)
 
 
-if(!file.exists("FineMapping_Application/Data/Sim2.rds")){
-  rds <- bigsnpr::snp_readBed("FineMapping_Application/Data/Sim2.bed")  
+if(!file.exists("Fine_Mapping_Simulation/Data/Sim2.rds")){
+  rds <- bigsnpr::snp_readBed("Fine_Mapping_Simulation/Data/Sim2.bed")  
 }
 
 # Loading the data from backing files
-common_variants_Sim2 <- snp_attach("FineMapping_Application/Data/Sim2.rds")
+common_variants_Sim2 <- snp_attach("Fine_Mapping_Simulation/Data/Sim2.rds")
 
-Sim2_Bim <- read.delim("FineMapping_Application/Data/Sim2.bim", header=FALSE)
+Sim2_Bim <- read.delim("Fine_Mapping_Simulation/Data/Sim2.bim", header=FALSE)
 
 causal_SNPs_Sim2 <- which(Sim2_Bim[,4] %in% c(167372978,167370971,167442994,167442994,167404689,167412048,167411788))
 
@@ -69,6 +69,6 @@ for(l in 1:50){
   print(l)
 }
 
-save(Y_Sim1,file = "FineMapping_Application/Data/Sim1_Y.Rdata")
-save(Y_Sim2,file = "FineMapping_Application/Data/Sim2_Y.Rdata")
+save(Y_Sim1,file = "Fine_Mapping_Simulation/Data/Sim1_Y.Rdata")
+save(Y_Sim2,file = "Fine_Mapping_Simulation/Data/Sim2_Y.Rdata")
 
