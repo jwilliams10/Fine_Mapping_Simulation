@@ -122,12 +122,15 @@ average_pips_Sim2 <- cbind(Sim2_Bim,rowMeans(do.call(cbind,lapply(results_susie_
 
 ### Simulation 1
 
-FunctionalScores_Sim1 <- read_excel("Fine_Mapping_Simulation/Data/FunctionalScores.xlsx",sheet = "lung cancer 1 var")
-FunctionalScores_Sim1$Chr <- unlist(lapply(strsplit(FunctionalScores_Sim1$Variant_ID,":"),function(x){as.numeric(x[1])}))
-FunctionalScores_Sim1$Position <- unlist(lapply(strsplit(FunctionalScores_Sim1$Variant_ID,":"),function(x){as.numeric(x[2])}))
+Supplementary_Table <- read_excel("Fine_Mapping_Simulation/Data/Supplementary_Table.xlsx", sheet = "TS9", skip = 11)
+FunctionalScores_Sim1 <- Supplementary_Table[Supplementary_Table$GWAS_Locus == "36_15q21.3",]
+FunctionalScores_Sim2 <- Supplementary_Table[Supplementary_Table$GWAS_Locus == "11_6p21.33",]
 
-FunctionalScores_Sim1 <- FunctionalScores_Sim1[,c(7,8,2,4,6)]
-colnames(FunctionalScores_Sim1) <- c("Chr","Position","RSID","Integrative_Score","Forge_DB_Score")
+FunctionalScores_Sim1$Chr <- unlist(lapply(strsplit(FunctionalScores_Sim1$`Variant_ID (hg19)`,":"),function(x){as.numeric(x[1])}))
+FunctionalScores_Sim1$Position <- unlist(lapply(strsplit(FunctionalScores_Sim1$`Variant_ID (hg19)`,":"),function(x){as.numeric(x[2])}))
+
+FunctionalScores_Sim1 <- FunctionalScores_Sim1[,c(17,18,2,15)]
+colnames(FunctionalScores_Sim1) <- c("Chr","Position","RSID","Integrative_Score")
 
 average_pips_Sim1 <- average_pips_Sim1[,c(1,2,4,7,8,9,10)]
 colnames(average_pips_Sim1) <- c("Chr","SNPID","Position","Mean_SuSie_PIP","SE_SuSie_PIP","Mean_FINEMAP_PIP","SE_FINEMAP_PIP")
@@ -169,13 +172,8 @@ aggregate(TPs/length(causal_SNPs_Sim1) ~ Method,data = table_dat1,mean)
 aggregate(TPs + FPs ~ Method,data = table_dat1,mean)
 
 ### Simulation 2
-
-FunctionalScores_Sim2 <- read_excel("Fine_Mapping_Simulation/Data/FunctionalScores.xlsx",sheet = "lung cancer 6 vars")
-FunctionalScores_Sim2$Chr <- unlist(lapply(strsplit(FunctionalScores_Sim2$Variant_ID,":"),function(x){as.numeric(x[1])}))
-FunctionalScores_Sim2$Position <- unlist(lapply(strsplit(FunctionalScores_Sim2$Variant_ID,":"),function(x){as.numeric(x[2])}))
-
-FunctionalScores_Sim2 <- FunctionalScores_Sim2[,c(7,8,2,4,6)]
-colnames(FunctionalScores_Sim2) <- c("Chr","Position","RSID","Integrative_Score","Forge_DB_Score")
+FunctionalScores_Sim2 <- FunctionalScores_Sim2[,c(17,18,2,15)]
+colnames(FunctionalScores_Sim2) <- c("Chr","Position","RSID","Integrative_Score")
 
 average_pips_Sim2 <- average_pips_Sim2[,c(1,2,4,7,8,9,10)]
 colnames(average_pips_Sim2) <- c("Chr","SNPID","Position","Mean_SuSie_PIP","SE_SuSie_PIP","Mean_FINEMAP_PIP","SE_FINEMAP_PIP")
